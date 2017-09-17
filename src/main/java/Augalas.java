@@ -25,4 +25,9 @@ public class Augalas {
                 + ", Sodininko pavarde: " + this.sodininkas.pavarde
                 + ", Pasodinimo data: " + this.pasodinimoData.toString();
     }
+
+    public Vazonas addToVazonas(Augalas augalas, Sodininkas sodininkas, String pavadinimas, String vieta){
+        Vazonas vazonas = new Vazonas(pavadinimas, vieta, augalas, sodininkas);
+        return vazonas;
+    }
 }

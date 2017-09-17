@@ -1,4 +1,3 @@
-import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -29,14 +28,37 @@ public class Main {
             sodininkas.pavarde = in.readLine();
 
             augalas.sodininkas = sodininkas;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         System.out.println(augalas.toString());
 
+        String vazonoPav = null;
+        String vazonoVieta = null;
 
+
+        try {
+            System.out.println("Koks bus vazono pavadinimas kuriame bus auginamas augalas?: ");
+            vazonoPav = in.readLine();
+            System.out.println("Kur bus vazonas?: ");
+            vazonoVieta = in.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Vazonas vazonas = augalas.addToVazonas(augalas, sodininkas, vazonoPav, vazonoVieta);
+        System.out.println("Augalas pridėtas į vazoną: " + vazonas.toString());
+
+        System.out.println("Po kiek dienu turetu prazisti jusu augalas?:");
+        Integer dienos = null;
+        try {
+            dienos = Integer.parseInt(in.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        augalas.zydejimoLaikas = fmt.print(dt.plusDays(dienos));
+        System.out.println("Augalas turetu prazisti: " + augalas.zydejimoLaikas);
     }
 
 }
